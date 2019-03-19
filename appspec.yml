@@ -3,8 +3,8 @@ Resources:
   - myLambdaFunction:
       Type: AWS::Lambda::Function
       Properties:
-        Name: "RomanNumeralConverter"
-        Alias: "RomanNumeralConverterAlias"
+        Name: "RomanNumeralConversion"
+        Alias: "RomanNumeralConversionAlias"
         CurrentVersion: "1"
         TargetVersion: "2"
 Hooks:
