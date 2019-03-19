@@ -1,9 +1,9 @@
 version: 0.0
-Resources:
-  - RomanNumeralConversion
-      Type: AWS::Lambda::Function
-      Properties:
-        Name: "RomanNumeralConversion"
-        Alias: "rnc1"
-        CurrentVersion: "1"
-        TargetVersion: "2"
+resources:
+  - RomanNumeralConversion:
+      type: "AWS::Lambda::Function"
+      properties:
+        name: "RomanNumeralConversion"
+        alias: "rnc1"
+        currentVersion: "1"
+        targetVersion: "2"
