@@ -1,10 +1,9 @@
 version: 0.0
 Resources:
-  - myLambdaFunction:
+  - RomanNumeralConversion
       Type: AWS::Lambda::Function
       Properties:
         Name: "RomanNumeralConversion"
         Alias: "rnc1"
         CurrentVersion: "1"
         TargetVersion: "2"
-Hooks:
