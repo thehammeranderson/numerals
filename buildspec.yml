@@ -11,5 +11,5 @@ phases:
 artifacts:
   files:
     - target/numerals-0.0.1-SNAPSHOT.jar
-    - appspec.yml
+    - appspec.yaml
   discard-paths: yes
