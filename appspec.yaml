@@ -6,4 +6,4 @@ resources:
         Name: "RomanNumeralConversion"
         Alias: "rnc1"
         CurrentVersion: "1"
-        TargetVersion: "2"
+        TargetVersion: "1"
