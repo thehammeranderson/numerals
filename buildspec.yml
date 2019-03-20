@@ -1,5 +1,4 @@
 version: 0.1
-
 phases:
   build:
     commands:
@@ -7,9 +6,11 @@ phases:
       - mvn install 
   post_build:
     commands:
+      - aws cloudformation package --template-file template.yaml --s3-bucket lambda-numerals-deployment-art --output-template-file packaged-template.yaml
       - echo Build completed on `date`
 artifacts:
+  type: zip
   files:
-    - target/numerals-0.0.1-SNAPSHOT.jar
-    - appspec.yaml
+    - template.yaml
+    - packaged-template.yaml
   discard-paths: yes
