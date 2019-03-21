@@ -13,6 +13,6 @@ paths:
       produces:
       - application/json
       x-amazon-apigateway-integration:
-        uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:[AWS_ACCOUNT_ID]:function:RomanNumeralConverter/invocations
+        uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:006393696278:function:RomanNumeralConverter/invocations
         httpMethod: POST
         type: aws_proxy
