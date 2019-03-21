@@ -1,27 +1,28 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  RomanNumeralConverter:
+  RomanNumeralConverterApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      DefinitionUri: ./swagger.yaml
+  RomanNumeralConverterFunction:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: RomanNumeralConverter
       Timeout: 30
       Handler: com.thehammer.numerals.RomanNumeralConversion::handleRequest
       Runtime: java8
-      CodeUri: target//numerals-0.0.1-SNAPSHOT.jar
+      CodeUri: ./target/numerals-0.0.1-SNAPSHOT.jar
       Policies:
         - AWSLambdaExecute
       Events:
-        GetResource:
+        ConvertRomanNumeralApi:
           Type: Api
           Properties:
+            RestApiId: !Ref "RomanNumeralConverterApiGateway"
             Path: /numerals/{numerals+}
             Method: GET
-  ExampleApi:
-    Type: AWS::Serverless::Api
-    Properties:
-      StageName: Prod
-      DefinitionUri: swagger.yaml
 Outputs:
   ExampleApi:
     Description: API URI
