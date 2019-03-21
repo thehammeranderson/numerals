@@ -17,9 +17,9 @@ Resources:
       Policies:
         - AWSLambdaExecute
       Events:
-        GetResource:
+        GetRequest:
           Type: Api
           Properties:
-            RestApiId: !Ref "RomanNumeralConverterApiGateway"
+            RestApiId: !Ref RomanNumeralConverterApiGateway
             Path: /numerals/{numerals+}
             Method: GET

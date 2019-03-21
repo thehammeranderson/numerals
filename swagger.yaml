@@ -1,12 +1,18 @@
----
-swagger: 2.0
+swagger: '2.0'
 basePath: /Prod
 info:
   title: RomanNumeralConverter
 schemes:
 - https
 paths:
-  /numerals/{numerals+}:
+  /numerals:
+    get:
+      x-amazon-apigateway-integration:
+        uri: Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetLambdaFunction.Arn}/invocations"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "aws_proxy"
+        responses: {}
     any:
       x-amazon-apigateway-auth:
         type: none
@@ -16,3 +22,9 @@ paths:
         uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:006393696278:function:RomanNumeralConverter/invocations
         httpMethod: POST
         type: aws_proxy
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+        
