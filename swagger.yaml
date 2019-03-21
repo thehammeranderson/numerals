@@ -11,10 +11,4 @@ paths:
         uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:006393696278:function:RomanNumeralConverter/invocations
         httpMethod: POST
         type: aws_proxy
-        responses: {}
-    options:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-        
+        responses: {}        
