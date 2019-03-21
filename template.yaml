@@ -16,7 +16,7 @@ Resources:
           Type: Api
           Properties:
             Path: /numerals/{numerals+}
-            Method: get
+            Method: GET
   ExampleApi:
     Type: AWS::Serverless::Api
     Properties:
