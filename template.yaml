@@ -17,15 +17,9 @@ Resources:
       Policies:
         - AWSLambdaExecute
       Events:
-        ConvertRomanNumeralApi:
+        GetResource:
           Type: Api
           Properties:
             RestApiId: !Ref "RomanNumeralConverterApiGateway"
             Path: /numerals/{numerals+}
-            Method: GET
-Outputs:
-  ConvertRomanNumeralApi:
-    Description: API URI
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/numerals'
-    Export:
-      Name: ConvertRomanNumeralApi
+            Method: any
