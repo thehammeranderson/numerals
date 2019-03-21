@@ -24,8 +24,8 @@ Resources:
             Path: /numerals/{numerals+}
             Method: GET
 Outputs:
-  ExampleApi:
+  ConvertRomanNumeralApi:
     Description: API URI
     Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/numerals'
     Export:
-      Name: ExampleApi
+      Name: ConvertRomanNumeralApi
