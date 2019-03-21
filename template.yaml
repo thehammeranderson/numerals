@@ -22,4 +22,4 @@ Resources:
           Properties:
             RestApiId: !Ref "RomanNumeralConverterApiGateway"
             Path: /numerals/{numerals+}
-            Method: any
+            Method: GET
