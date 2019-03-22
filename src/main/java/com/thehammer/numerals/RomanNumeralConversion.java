@@ -97,15 +97,18 @@ public class RomanNumeralConversion
 				throw new InvalidCharacterException("invalid character input " + numeralChar);
 			}
 
-			if (pos + 1 < characters.length && numeralMap.get(numeralChar) < numeralMap.get(characters[pos + 1])) {
-				upTimes++;
-			} else {
-				upTimes = 0;
-			}
-
-			if (upTimes > 1) {
-				throw new InvalidSequenceException(
-						"invalid roman numeral.  numeral characters can increase one time preceeded by a subractor numeral (ie. IV)");
+			if (pos + 1 < characters.length) {
+				if (numeralMap.get(numeralChar) < numeralMap.get(characters[pos + 1])) {
+					upTimes++;
+					if (upTimes > 1) {
+						throw new InvalidSequenceException(
+							"invalid roman numeral.  numeral characters can increase in value one time when preceeded by a subractor numeral (ie. IV)");
+					}
+//				} else if (upTimes == 1 && numeralChar.equals(characters[pos + 1]) ) {
+//					throw new InvalidSequenceException("invalid roman numeral. same numeral character cannot follow a subractor sequence of that numeral character (ie. IVV should be VIV or IXX should be XIX)");
+				} else {
+					upTimes = 0;
+				}
 			}
 		}
 	}
