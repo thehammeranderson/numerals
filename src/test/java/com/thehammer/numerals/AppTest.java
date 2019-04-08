@@ -3,10 +3,13 @@ package com.thehammer.numerals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.Test;
+
 /**
  * Unit test for simple App.
  */
 public class AppTest {
+	@Test
 	public void testAddition() throws InvalidCharacterException, InvalidSequenceException {
 		RomanNumeralConversion numeralsApp = new RomanNumeralConversion("II");
 		assertEquals(2, numeralsApp.calculateNumeral());
@@ -25,6 +28,7 @@ public class AppTest {
 
 	}
 
+	@Test
 	public void testSubtraction() throws InvalidCharacterException, InvalidSequenceException {
 		RomanNumeralConversion numeralsApp = new RomanNumeralConversion("IV");
 		assertEquals(4, numeralsApp.calculateNumeral());
@@ -43,12 +47,7 @@ public class AppTest {
 
 	}
 
-	/**
-	 * Rigourous Test :-)
-	 * 
-	 * @throws InvalidCharacterException
-	 * @throws InvalidSequenceException 
-	 */
+	@Test
 	public void testNumeralChars() throws InvalidCharacterException, InvalidSequenceException {
 		RomanNumeralConversion numeralsApp = new RomanNumeralConversion("I");
 		assertEquals(1, numeralsApp.calculateNumeral());
@@ -78,8 +77,15 @@ public class AppTest {
 		
 	}
 	
+	@Test
 	public void testBadNumeral() throws InvalidCharacterException, InvalidSequenceException {
-		final RomanNumeralConversion numeralsApp = new RomanNumeralConversion("XIVX");
+		final RomanNumeralConversion numeralsApp = new RomanNumeralConversion();
+		numeralsApp.setNumeralInput("XIVX");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("IXX");
 		assertThrows(InvalidSequenceException.class, () -> {
 			numeralsApp.calculateNumeral();
 		});
