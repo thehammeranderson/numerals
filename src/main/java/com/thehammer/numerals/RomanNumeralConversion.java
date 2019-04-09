@@ -74,21 +74,32 @@ public class RomanNumeralConversion
 		validate(characters);
 
 		int sum = 0;
+		int lastDigit = 0;
+		int thisDigit = 0;
 		for (int pos = 0; pos < characters.length; pos++) {
 			String numeralChar = characters[pos];
 
 			if (pos + 1 < characters.length && numeralMap.get(numeralChar) < numeralMap.get(characters[pos + 1])) {
-				sum += numeralMap.get(characters[pos + 1]) - numeralMap.get(numeralChar);
+				thisDigit = numeralMap.get(characters[pos + 1]) - numeralMap.get(numeralChar);				
+				sum += thisDigit;
 				pos++;
 			} else {
-				sum += numeralMap.get(characters[pos]);
+				thisDigit = numeralMap.get(characters[pos]);
+				sum += thisDigit;
 			}
+			
+			if (lastDigit != 0 && thisDigit > lastDigit) {
+				throw new InvalidSequenceException("invalid roman numeral.  roman numeral digits decrease in size from left to right (ie. MDCLXVI)");
+			}
+
+			lastDigit = thisDigit;
 		}
 		return sum;
 	}
 
 	private void validate(String[] characters) throws InvalidSequenceException, InvalidCharacterException {
 		int upTimes = 0;
+		int priorDigit = 0;
 
 		for (int pos = 0; pos < characters.length; pos++) {
 			String numeralChar = characters[pos];
@@ -109,7 +120,7 @@ public class RomanNumeralConversion
 				} else {
 					upTimes = 0;
 				}
-			}
+			}			
 		}
 	}
 

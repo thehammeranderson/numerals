@@ -89,5 +89,10 @@ public class AppTest {
 		assertThrows(InvalidSequenceException.class, () -> {
 			numeralsApp.calculateNumeral();
 		});
+		
+		numeralsApp.setNumeralInput("XVIC");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
 	}
 }
