@@ -50,8 +50,14 @@ mvn clean install
 
 Unit tests are in src/test/java/ in the AppTest class.  Listed below are more details on the tests performed.
 
-* ??
-  * ??
+* testAddition()
+    * simple test that summation working properly
+* testSubtraction()
+    * simple test that subtraction sequences are working
+* testNumeralChars()
+    * test that only valid numerals are being accepted and that the proper exception is thrown when an invalid character is given
+* testBadNumeral()
+    * test when correct numerals are given but in a bad sequence
 
 ## Deployment
 
@@ -66,6 +72,8 @@ java -jar <path to jar>numerals-0.0.1-SNAPSHOT.jar <roman numeral string>
 
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [JUnit](https://junit.org/junit5/) - Used for unit testing
+* [AWS Lambda](https://aws.amazon.com/lambda/) - Used if deploying as a Lambda service
+* [JSON](http://www.JSON.org/) - Used to create responses when deploying as an AWS Lambda service and API Gateway
 
 ## Future improvements
 
