@@ -70,7 +70,7 @@ java -jar <path to jar>numerals-0.0.1-SNAPSHOT.jar <roman numeral string>
 
 Another option is to leverage the AWS Lambda features already built into this jar by uploading it manually as [Lambda in AWS](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions). You would click Create function, Author from scratch, give it a name and select Java 8 as the runtime, and click Create function.  Once created, you can use the upload form and choose the numerals-0.0.1-SNAPSHOT.jar file.
 
-To have a full REST service via API Gateway and Lambda, you can follow [AWS instructions](https://docs.aws.amazon.com/lambda/latest/dg/build-pipeline.html) substituting what you need for a Java Lambda.  All the yaml files are provided and you just need to add an S3 bucket called roman-numerals-deployment-art for the buildspec step that converts the SAM template to a CloudFormation template.
+To have a full REST service via API Gateway and Lambda, you can follow [AWS instructions](https://docs.aws.amazon.com/lambda/latest/dg/build-pipeline.html) substituting what you need for a Java Lambda.  All the yaml files are provided and you just need to add an S3 bucket called roman-numerals-deployment-art for the buildspec step that converts the SAM template to a CloudFormation template.  It is setup to be deployed in us-east-2, but can be changed with an update to swagger.yaml.
 
 ## Built With
 
