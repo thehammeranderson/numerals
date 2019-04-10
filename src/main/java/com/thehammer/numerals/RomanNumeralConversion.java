@@ -65,7 +65,13 @@ public class RomanNumeralConversion
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Hello World!");
+		RomanNumeralConversion newApp = new RomanNumeralConversion(args[0]);
+		try {
+			Integer value = newApp.calculateNumeral();
+			System.out.println("Value = " + value);
+		} catch (InvalidCharacterException | InvalidSequenceException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	public int calculateNumeral() throws InvalidCharacterException, InvalidSequenceException {
