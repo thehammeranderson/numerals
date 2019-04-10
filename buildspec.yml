@@ -6,10 +6,10 @@ phases:
       - mvn install 
   post_build:
     commands:
-      - aws cloudformation package --template-file template.yaml --s3-bucket roman-numerals-deployment-art --output-template-file packaged-template.yaml
+      - aws cloudformation package --template-file template.yaml --s3-bucket roman-numerals-deployment-art --output-template-file outputtemplate.yaml
       - echo Build completed on `date`
 artifacts:
   files:
     - template.yaml
-    - packaged-template.yaml
+    - outputtemplate.yaml
   discard-paths: yes
