@@ -1,7 +1,9 @@
 package com.thehammer.numerals;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -37,6 +39,8 @@ public class RomanNumeralConversion
 		numeralMap.put("D", 500);
 		numeralMap.put("M", 1000);
 	}
+	
+	private static List<String> subtractorNumerals = Arrays.asList("I", "X", "C");
 
 	public RomanNumeralConversion() {
 		super();
@@ -105,7 +109,6 @@ public class RomanNumeralConversion
 
 	private void validate(String[] characters) throws InvalidSequenceException, InvalidCharacterException {
 		int upTimes = 0;
-		int priorDigit = 0;
 
 		for (int pos = 0; pos < characters.length; pos++) {
 			String numeralChar = characters[pos];
@@ -116,10 +119,15 @@ public class RomanNumeralConversion
 
 			if (pos + 1 < characters.length) {
 				if (numeralMap.get(numeralChar) < numeralMap.get(characters[pos + 1])) {
-					upTimes++;
-					if (upTimes > 1) {
+					if (subtractorNumerals.contains(numeralChar)) {
+						upTimes++;
+						if (upTimes > 1) {
+							throw new InvalidSequenceException(
+								"invalid roman numeral.  numeral characters can increase in value one time when preceeded by a subractor numeral (ie. IV)");
+						}
+					} else {
 						throw new InvalidSequenceException(
-							"invalid roman numeral.  numeral characters can increase in value one time when preceeded by a subractor numeral (ie. IV)");
+								"invalid subtractor numeral.  can only subtract using I, X, or C");						
 					}
 				} else if (upTimes == 1 && numeralChar.equals(characters[pos + 1]) ) {
 					throw new InvalidSequenceException("invalid roman numeral. same numeral character cannot follow a subractor sequence of that numeral character (ie. IVV should be VIV or IXX should be XIX)");

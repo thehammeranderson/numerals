@@ -94,5 +94,14 @@ public class AppTest {
 		assertThrows(InvalidSequenceException.class, () -> {
 			numeralsApp.calculateNumeral();
 		});
+
+		numeralsApp.setNumeralInput("VXV");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+		numeralsApp.setNumeralInput("LC");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
 	}
 }
