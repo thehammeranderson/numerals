@@ -152,7 +152,7 @@ public class RomanNumeralConversion
 						}
 					} else {
 						throw new InvalidSequenceException(
-								"invalid subtractor numeral.  can only subtract using I, X, or C");						
+								"invalid subtractor character or sequence.  can only subtract using I, X, or C and numeral characters can increase in value one time when preceeded by a subractor numeral (ie. IV)");						
 					}
 				} else if (upTimes == 1 && numeralChar.equals(characters[pos + 1]) ) {
 					throw new InvalidSequenceException("invalid roman numeral. same numeral character cannot follow a subractor sequence of that numeral character (ie. IVV should be VIV or IXX should be XIX)");
