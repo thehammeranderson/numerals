@@ -40,6 +40,16 @@ public class RomanNumeralConversion
 		numeralMap.put("M", 1000);
 	}
 	
+	@SuppressWarnings("serial")
+	static Map<String, Integer> numeralAddAllowedMap = new HashMap<String, Integer>(){{
+	    put("I", 4);
+	    put("V", 1);
+	    put("X", 4);
+	    put("L", 1);
+	    put("C", 4);
+	    put("D", 1);
+	}};
+	
 	private static List<String> subtractorNumerals = Arrays.asList("I", "X", "C");
 
 	public RomanNumeralConversion() {
@@ -80,6 +90,16 @@ public class RomanNumeralConversion
 
 	public int calculateNumeral() throws InvalidCharacterException, InvalidSequenceException {
 		String[] characters = numeralInput.split("");
+		@SuppressWarnings("serial")
+		Map<String, Integer> numeralCountMap = new HashMap<String, Integer>(){{
+		    put("I", 0);
+		    put("V", 0);
+		    put("X", 0);
+		    put("L", 0);
+		    put("C", 0);
+		    put("D", 0);
+		    put("M", 0);
+		}};
 
 		validate(characters);
 
@@ -94,6 +114,11 @@ public class RomanNumeralConversion
 				sum += thisDigit;
 				pos++;
 			} else {
+				numeralCountMap.put(numeralChar, numeralCountMap.get(numeralChar) + 1);
+				if (!"M".equals(numeralChar) && numeralCountMap.get(numeralChar) > numeralAddAllowedMap.get(numeralChar)) {
+					throw new InvalidSequenceException("invalid roman numeral.  numeral characters cannot be added together to equal the next higher numeral character (ie. VV should be written as X)");
+				}
+				
 				thisDigit = numeralMap.get(characters[pos]);
 				sum += thisDigit;
 			}

@@ -13,16 +13,16 @@ public class AppTest {
 	public void testAddition() throws InvalidCharacterException, InvalidSequenceException {
 		RomanNumeralConversion numeralsApp = new RomanNumeralConversion("II");
 		assertEquals(2, numeralsApp.calculateNumeral());
-		
+
 		numeralsApp = new RomanNumeralConversion("VI");
 		assertEquals(6, numeralsApp.calculateNumeral());
-		
+
 		numeralsApp = new RomanNumeralConversion("VII");
 		assertEquals(7, numeralsApp.calculateNumeral());
 
 		numeralsApp = new RomanNumeralConversion("XV");
 		assertEquals(15, numeralsApp.calculateNumeral());
-		
+
 		numeralsApp = new RomanNumeralConversion("LXVIII");
 		assertEquals(68, numeralsApp.calculateNumeral());
 
@@ -32,18 +32,45 @@ public class AppTest {
 	public void testSubtraction() throws InvalidCharacterException, InvalidSequenceException {
 		RomanNumeralConversion numeralsApp = new RomanNumeralConversion("IV");
 		assertEquals(4, numeralsApp.calculateNumeral());
-		
+
 		numeralsApp = new RomanNumeralConversion("IX");
 		assertEquals(9, numeralsApp.calculateNumeral());
-		
+
+		numeralsApp = new RomanNumeralConversion("IL");
+		assertEquals(49, numeralsApp.calculateNumeral());
+
+		numeralsApp = new RomanNumeralConversion("IC");
+		assertEquals(99, numeralsApp.calculateNumeral());
+
+		numeralsApp = new RomanNumeralConversion("ID");
+		assertEquals(499, numeralsApp.calculateNumeral());
+
+		numeralsApp = new RomanNumeralConversion("IM");
+		assertEquals(999, numeralsApp.calculateNumeral());
+
 		numeralsApp = new RomanNumeralConversion("XL");
 		assertEquals(40, numeralsApp.calculateNumeral());
 
+		numeralsApp = new RomanNumeralConversion("XC");
+		assertEquals(90, numeralsApp.calculateNumeral());
+
+		numeralsApp = new RomanNumeralConversion("XD");
+		assertEquals(490, numeralsApp.calculateNumeral());
+
+		numeralsApp = new RomanNumeralConversion("XM");
+		assertEquals(990, numeralsApp.calculateNumeral());
+
+		numeralsApp = new RomanNumeralConversion("CD");
+		assertEquals(400, numeralsApp.calculateNumeral());
+
+		numeralsApp = new RomanNumeralConversion("CM");
+		assertEquals(900, numeralsApp.calculateNumeral());
+
 		numeralsApp = new RomanNumeralConversion("XIV");
 		assertEquals(14, numeralsApp.calculateNumeral());
-		
-		numeralsApp = new RomanNumeralConversion("CXLIV");
-		assertEquals(144, numeralsApp.calculateNumeral());
+
+		numeralsApp = new RomanNumeralConversion("MCDXCIV");
+		assertEquals(1494, numeralsApp.calculateNumeral());
 
 	}
 
@@ -70,13 +97,22 @@ public class AppTest {
 		numeralsApp = new RomanNumeralConversion("M");
 		assertEquals(1000, numeralsApp.calculateNumeral());
 
-		final RomanNumeralConversion numeralsAppFinal = new RomanNumeralConversion("Z");
-	    assertThrows(InvalidCharacterException.class, () -> {
-	    	numeralsAppFinal.calculateNumeral();
-    	});
-		
 	}
-	
+
+	@Test
+	public void testBadNumeralChar() throws InvalidCharacterException, InvalidSequenceException {
+		final RomanNumeralConversion numeralsApp = new RomanNumeralConversion();
+		numeralsApp.setNumeralInput("abc");
+		assertThrows(InvalidCharacterException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("Z");
+		assertThrows(InvalidCharacterException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+	}
+
 	@Test
 	public void testBadNumeral() throws InvalidCharacterException, InvalidSequenceException {
 		final RomanNumeralConversion numeralsApp = new RomanNumeralConversion();
@@ -89,8 +125,13 @@ public class AppTest {
 		assertThrows(InvalidSequenceException.class, () -> {
 			numeralsApp.calculateNumeral();
 		});
-		
+
 		numeralsApp.setNumeralInput("XVIC");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("VXL");
 		assertThrows(InvalidSequenceException.class, () -> {
 			numeralsApp.calculateNumeral();
 		});
@@ -99,9 +140,66 @@ public class AppTest {
 		assertThrows(InvalidSequenceException.class, () -> {
 			numeralsApp.calculateNumeral();
 		});
+
+		numeralsApp.setNumeralInput("IVX");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
 		numeralsApp.setNumeralInput("LC");
 		assertThrows(InvalidSequenceException.class, () -> {
 			numeralsApp.calculateNumeral();
 		});
+
+		numeralsApp.setNumeralInput("Z");
+		assertThrows(InvalidCharacterException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("IIIV");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("IXXC");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("IIIII");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("VV");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("XXXXX");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("LL");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("CCCCC");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("DD");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
+		numeralsApp.setNumeralInput("IXX");
+		assertThrows(InvalidSequenceException.class, () -> {
+			numeralsApp.calculateNumeral();
+		});
+
 	}
 }
